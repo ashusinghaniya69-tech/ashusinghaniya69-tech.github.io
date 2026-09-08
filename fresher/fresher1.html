@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Ashutosh — UI/UX Design Fresher | Open to Internships</title>
+<meta name="description" content="Ashutosh is a UI/UX design fresher looking for an internship, with a growing portfolio of personal and course projects across fintech, e-commerce, and mobile apps." />
+
+<meta property="og:title" content="Ashutosh — UI/UX Design Fresher | Open to Internships" />
+<meta property="og:description" content="A UI/UX design fresher looking for an internship. Personal and course projects, design fundamentals, and a fast learning curve." />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%230B0B0D'/%3E%3Ctext x='50' y='68' font-size='55' font-family='sans-serif' font-weight='700' fill='%23C9A227' text-anchor='middle'%3EA%3C/text%3E%3C/svg%3E" />
+
+<!--
+  NOTE for production: this page uses the Tailwind CDN build for convenience.
+  Before publishing for real, compile Tailwind via the CLI/PostCSS into a
+  static .css file and swap the <script> below for a <link rel="stylesheet">.
+-->
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<noscript>
+  <style>.fade-up{opacity:1 !important; transform:none !important;}</style>
+</noscript>
+
+<style>
+  :root{
+    --bg:#0B0B0D;
+    --bg-soft:#131316;
+    --card:#161619;
+    --card-2:#1B1B1F;
+    --line:#232327;
+    --text:#F2F1EC;
+    --muted:#9B9BA3;
+    --muted2:#8A8A92;
+    --gold:#C9A227;
+    --gold-soft:#E4C465;
+    --violet:#6C63FF;
+    --violet-soft:#9C93FF;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Inter', sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.display{font-family:'Space Grotesk', sans-serif;}
+  .mono{font-family:'IBM Plex Mono', monospace;}
+  section{scroll-margin-top:76px;}
+  .grain{
+    background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.035) 1px, transparent 0);
+    background-size: 22px 22px;
+  }
+  .fade-up{opacity:0; transform:translateY(24px); transition:opacity .7s ease, transform .7s ease;}
+  .fade-up.show{opacity:1; transform:translateY(0);}
+  .design-orbit{position:relative;min-height:390px;overflow:hidden;background:linear-gradient(145deg,rgba(201,162,39,.08),rgba(108,99,255,.08) 55%,rgba(22,22,25,.8));}
+  .design-orbit::before{content:'';position:absolute;width:230px;height:230px;border:1px solid rgba(201,162,39,.2);border-radius:50%;top:50%;left:50%;transform:translate(-50%,-50%);box-shadow:0 0 70px rgba(201,162,39,.08);}
+  .design-orbit::after{content:'';position:absolute;width:310px;height:310px;border:1px dashed rgba(156,147,255,.25);border-radius:50%;top:50%;left:50%;transform:translate(-50%,-50%);animation:orbit-spin 18s linear infinite;}
+  .orbit-core{position:absolute;z-index:2;top:50%;left:50%;width:112px;height:112px;transform:translate(-50%,-50%);border:1px solid rgba(201,162,39,.55);background:#161619;box-shadow:0 0 35px rgba(201,162,39,.15);}
+  .orbit-core span{animation:core-breathe 3.5s ease-in-out infinite;}
+  .orbit-node{position:absolute;z-index:3;display:flex;align-items:center;justify-content:center;width:70px;height:70px;border:1px solid var(--line);background:#1B1B1F;box-shadow:0 12px 30px rgba(0,0,0,.35);animation:node-float 4s ease-in-out infinite;}
+  .orbit-node:nth-child(2){top:17%;left:15%;animation-delay:-1.2s;}
+  .orbit-node:nth-child(3){top:19%;right:13%;animation-delay:-2.4s;}
+  .orbit-node:nth-child(4){bottom:15%;left:18%;animation-delay:-.5s;}
+  .orbit-node:nth-child(5){bottom:14%;right:16%;animation-delay:-1.8s;}
+  @keyframes orbit-spin{to{transform:translate(-50%,-50%) rotate(360deg)}}
+  @keyframes node-float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+  @keyframes core-breathe{0%,100%{opacity:.65;transform:scale(.96)}50%{opacity:1;transform:scale(1.04)}}
+  .nav-link{position:relative;}
+  .nav-link::after{content:'';position:absolute;left:0;bottom:-4px;width:0;height:1px;background:var(--gold);transition:width .25s ease;}
+  .nav-link:hover::after, .nav-link:focus-visible::after{width:100%;}
+  .btn-primary{background:var(--gold); color:#0B0B0D;}
+  .btn-primary:hover{background:var(--gold-soft);}
+  .btn-outline{border:1px solid var(--line); color:var(--text);}
+  .btn-outline:hover{border-color:var(--gold); color:var(--gold);}
+  .skill-fill{transition:width 1.2s cubic-bezier(.22,1,.36,1);}
+  .card-hover{transition:transform .35s ease, border-color .35s ease, box-shadow .35s ease;}
+  .card-hover:hover{transform:translateY(-6px); border-color:rgba(201,162,39,0.4); box-shadow:0 24px 60px -20px rgba(0,0,0,0.6);}
+  .num{font-family:'IBM Plex Mono', monospace; color:var(--gold); font-size:0.8rem; letter-spacing:0.08em;}
+  .kpi{font-family:'IBM Plex Mono', monospace;}
+  a:focus-visible, button:focus-visible{outline:2px solid var(--gold); outline-offset:3px; border-radius:4px;}
+  #mobileNav{max-height:0; overflow:hidden; transition:max-height .3s ease;}
+  #mobileNav.open{max-height:320px;}
+  @media (prefers-reduced-motion: reduce){
+    .fade-up{opacity:1 !important; transform:none !important; transition:none !important;}
+    .design-orbit::after,.orbit-core span,.orbit-node{animation:none !important;}
+    .skill-fill{transition:none !important;}
+    .card-hover{transition:none !important;}
+    .card-hover:hover{transform:none !important;}
+    html{scroll-behavior:auto;}
+  }
+</style>
+</head>
+<body class="grain">
+
+<!-- NAV -->
+<header class="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-[#0B0B0D]/70 border-b border-[var(--line)]">
+  <div class="max-w-6xl mx-auto px-6 md:px-10 h-[76px] flex items-center justify-between">
+    <a href="#top" class="display font-semibold text-lg tracking-wide">ASH<span style="color:var(--gold)">U</span></a>
+    <nav class="hidden md:flex items-center gap-10 text-sm text-[var(--muted2)]" aria-label="Primary">
+      <a href="#about" class="nav-link">About</a>
+      <a href="#work" class="nav-link">Projects</a>
+      <a href="#process" class="nav-link">Process</a>
+      <a href="#skills" class="nav-link">Skills</a>
+      <a href="#contact" class="nav-link">Contact</a>
+    </nav>
+    <div class="flex items-center gap-3">
+      <a href="#contact" class="hidden md:inline-block btn-primary text-sm font-semibold px-5 py-2.5 rounded-full">Get in touch</a>
+      <button id="navToggle" class="md:hidden w-10 h-10 flex items-center justify-center rounded-full border border-[var(--line)]" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobileNav">
+        <svg id="navIconOpen" width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true" focusable="false"><path d="M1 4H17M1 9H17M1 14H17" stroke="#F2F1EC" stroke-width="1.5" stroke-linecap="round"/></svg>
+        <svg id="navIconClose" class="hidden" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true" focusable="false"><path d="M1 1L15 15M15 1L1 15" stroke="#F2F1EC" stroke-width="1.5" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+  </div>
+  <nav id="mobileNav" class="md:hidden border-t border-[var(--line)] bg-[#0B0B0D]" aria-label="Mobile">
+    <div class="flex flex-col px-6 py-4 gap-4 text-sm text-[var(--muted2)]">
+      <a href="#about">About</a>
+      <a href="#work">Projects</a>
+      <a href="#process">Process</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact" class="btn-primary inline-block text-center font-semibold px-5 py-2.5 rounded-full text-[#0B0B0D]">Get in touch</a>
+    </div>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section id="top" class="relative pt-40 pb-20 px-6 md:px-10 overflow-hidden">
+  <div class="max-w-6xl mx-auto grid md:grid-cols-[1.3fr_1fr] gap-14 items-center">
+    <div class="fade-up">
+      <p class="num uppercase mb-5">UI/UX Design — Open to Internships</p>
+      <h1 class="display text-[42px] leading-[1.05] sm:text-[56px] md:text-[64px] font-semibold mb-6">
+        Fresh out of the<br/>
+        classroom, ready to<br/>
+        <span style="color:var(--gold)">design in the real world.</span>
+      </h1>
+      <p class="text-[var(--muted2)] text-lg max-w-md mb-10 leading-relaxed">
+        I'm Ashutosh, a UI/UX design fresher who turns course briefs and
+        personal projects into interfaces built around real user problems.
+        Looking for an internship where I can learn from an experienced
+        product team.
+      </p>
+      <div class="flex flex-wrap gap-4">
+        <a href="#work" class="btn-primary font-semibold px-7 py-3.5 rounded-full text-sm">View my projects</a>
+        <a href="#contact" class="btn-outline font-semibold px-7 py-3.5 rounded-full text-sm">Get in touch</a>
+      </div>
+    </div>
+
+    <div class="fade-up relative">
+      <div class="rounded-3xl border border-[var(--line)] bg-[var(--card)] p-6 shadow-2xl">
+        <div class="h-3 w-24 rounded-full bg-[#232327] mb-6"></div>
+        <div class="grid grid-cols-3 gap-3 mb-4">
+          <div class="col-span-1 h-40 rounded-2xl bg-[#1c1c20]"></div>
+          <div class="col-span-2 space-y-3">
+            <div class="h-[46px] rounded-xl bg-[#1c1c20]"></div>
+            <div class="h-[46px] rounded-xl bg-[#1c1c20]"></div>
+            <div class="h-[46px] rounded-xl bg-[#1c1c20]"></div>
+          </div>
+        </div>
+        <div class="rounded-2xl bg-[#1c1c20] p-4 flex items-center justify-between">
+          <div>
+            <p class="text-xs text-[var(--muted2)] mb-1">Concept dashboard mockup</p>
+            <p class="kpi font-semibold text-sm" style="color:var(--gold)">Figma prototype</p>
+          </div>
+          <svg width="90" height="34" viewBox="0 0 90 34" fill="none" aria-hidden="true" focusable="false">
+            <path d="M2 28 L18 16 L34 22 L50 8 L66 14 L88 3" stroke="#C9A227" stroke-width="2" fill="none" stroke-linecap="round"/>
+          </svg>
+        </div>
+      </div>
+      <div class="absolute -bottom-6 -left-6 w-28 h-28 rounded-full opacity-20" style="background:radial-gradient(circle, var(--gold), transparent 70%)" aria-hidden="true"></div>
+    </div>
+  </div>
+
+  <!-- TRUST STRIP -->
+  <div class="fade-up max-w-6xl mx-auto mt-20 pt-8 border-t border-[var(--line)]">
+    <p class="num uppercase mb-4">Areas I'd love to design for</p>
+    <div class="flex flex-wrap gap-3">
+      <span class="text-sm px-4 py-2 rounded-full border border-[var(--line)] text-[var(--muted2)]">Fintech</span>
+      <span class="text-sm px-4 py-2 rounded-full border border-[var(--line)] text-[var(--muted2)]">E-commerce</span>
+      <span class="text-sm px-4 py-2 rounded-full border border-[var(--line)] text-[var(--muted2)]">EdTech</span>
+      <span class="text-sm px-4 py-2 rounded-full border border-[var(--line)] text-[var(--muted2)]">Mobile Apps</span>
+      <span class="text-sm px-4 py-2 rounded-full border border-[var(--line)] text-[var(--muted2)]">Design Systems</span>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="px-6 md:px-10 py-28 border-t border-[var(--line)]">
+  <div class="max-w-6xl mx-auto grid md:grid-cols-[1.05fr_0.95fr] gap-16 items-center">
+    <div class="fade-up">
+      <p class="num uppercase mb-4">About me</p>
+      <h2 class="display text-3xl md:text-4xl font-semibold leading-tight mb-6">
+        Early in my career. Serious about the craft.
+      </h2>
+      <p class="text-[var(--muted2)] leading-relaxed mb-6">
+        I spend more time understanding a problem than making it look
+        pretty — though I care about that too. I've been building my
+        skills through coursework, personal projects, and design
+        communities, and I'm now looking for my first internship to
+        apply that thinking on a real product with a real team.
+      </p>
+      <p class="text-[var(--muted2)] leading-relaxed mb-10">
+        I'm comfortable with the basics of the design process — research,
+        wireframes, prototyping, and handoff — and I pick up new tools
+        quickly. What I'm looking for now is mentorship: a team that can
+        show me how design decisions actually play out once they ship.
+      </p>
+      <blockquote class="border-l-2 pl-5 mb-10" style="border-color:var(--gold)">
+        <p class="text-lg text-[var(--text)] leading-relaxed italic mb-2">"Design isn't something you're born knowing — it's something you build, one problem at a time. DICS Institute gave me that foundation. I'm ready to build the rest on the job."</p>
+        <cite class="text-sm text-[var(--muted2)] not-italic">— Ashutosh, UI/UX Design Fresher, DICS Institute</cite>
+      </blockquote>
+      <div class="grid grid-cols-2 gap-4">
+        <div class="rounded-2xl border border-[var(--line)] bg-[var(--card)] p-5">
+          <p class="kpi text-2xl font-semibold" style="color:var(--gold)">DICS Institute</p>
+          <p class="text-sm text-[var(--muted2)] mt-1">[Add your course/degree name]</p>
+        </div>
+        <div class="rounded-2xl border border-[var(--line)] bg-[var(--card)] p-5">
+          <p class="kpi text-2xl font-semibold" style="color:var(--gold)">Figma</p>
+          <p class="text-sm text-[var(--muted2)] mt-1">Main design &amp; prototyping tool</p>
+        </div>
+        <div class="rounded-2xl border border-[var(--line)] bg-[var(--card)] p-5">
+          <p class="kpi text-2xl font-semibold" style="color:var(--gold)">5+</p>
+          <p class="text-sm text-[var(--muted2)] mt-1">Personal &amp; course projects</p>
+        </div>
+        <div class="rounded-2xl border border-[var(--line)] bg-[var(--card)] p-5">
+          <p class="kpi text-2xl font-semibold" style="color:var(--gold)">Open to</p>
+          <p class="text-sm text-[var(--muted2)] mt-1">Internships &amp; entry-level roles</p>
+        </div>
+      </div>
+    </div>
+    <div class="fade-up design-orbit rounded-3xl border border-[var(--line)]" aria-label="Animated design process visual">
+      <div class="orbit-core rounded-full flex items-center justify-center">
+        <span class="display text-2xl font-semibold" style="color:var(--gold)">AS</span>
+      </div>
+      <div class="orbit-node rounded-2xl"><span class="mono text-[10px] uppercase" style="color:var(--gold)">Think</span></div>
+      <div class="orbit-node rounded-2xl"><span class="mono text-[10px] uppercase" style="color:var(--violet-soft)">Explore</span></div>
+      <div class="orbit-node rounded-2xl"><span class="mono text-[10px] uppercase" style="color:var(--gold)">Shape</span></div>
+      <div class="orbit-node rounded-2xl"><span class="mono text-[10px] uppercase" style="color:var(--violet-soft)">Learn</span></div>
+      <p class="absolute bottom-6 left-0 right-0 text-center mono text-[10px] uppercase tracking-[.2em] text-[var(--muted2)]">Curiosity into craft</p>
+    </div>
+  </div>
+</section>
+
+<!-- WORK -->
+<section id="work" class="px-6 md:px-10 py-28 border-t border-[var(--line)]">
+  <div class="max-w-6xl mx-auto">
+    <div class="fade-up mb-16 max-w-xl">
+      <p class="num uppercase mb-4" style="color:var(--violet)">Projects</p>
+      <h2 class="display text-3xl md:text-4xl font-semibold">Personal &amp; course projects</h2>
+      <p class="text-[var(--muted2)] mt-4 leading-relaxed">These are personal and coursework projects I used to practice the end-to-end design process — not live production work. Swap in your own project details, screenshots, and links before publishing.</p>
+    </div>
+
+    <div class="space-y-8">
+      <!-- Project 1 -->
+      <article class="fade-up card-hover rounded-3xl border border-[var(--line)] bg-[var(--card)] p-8 md:p-10 grid md:grid-cols-[1fr_1.1fr] gap-10 items-center">
+        <div>
+          <h3 class="display text-2xl md:text-3xl font-semibold mb-4">Finance Dashboard </h3>
+          <p class="text-[var(--muted2)] leading-relaxed mb-6">
+            A concept redesign of a cluttered analytics dashboard, focused
+            on cutting the number of clicks it took to find a key number.
+          </p>
+          <div class="flex items-center gap-6 mb-6">
+            <div>
+              <p class="kpi text-xl font-semibold" style="color:var(--violet-soft)">Concept</p>
+              <p class="text-xs text-[var(--muted2)]">Project type</p>
+            </div>
+            <div class="w-px h-8 bg-[var(--line)]"></div>
+            <div>
+              <p class="kpi text-xl font-semibold" style="color:var(--violet-soft)">2 weeks</p>
+              <p class="text-xs text-[var(--muted2)]">Duration</p>
+            </div>
+          </div>
+          <div class="flex flex-wrap gap-2 mb-8">
+            <span class="text-xs font-semibold px-3.5 py-1.5 rounded-full bg-[#232327] text-[var(--muted)]">UI Design</span>
+            <span class="text-xs font-semibold px-3.5 py-1.5 rounded-full bg-[#232327] text-[var(--muted)]">Figma</span>
+            <span class="text-xs font-semibold px-3.5 py-1.5 rounded-full bg-[#232327] text-[var(--muted)]">Dashboard</span>
+          </div>
+          <a href="finance-dashboard.html" class="text-sm font-semibold" style="color:var(--violet)" data-project="Finance Dashboard">View project →</a>
+        </div>
+        <div class="rounded-2xl bg-[#1c1c20] border border-[var(--line)] p-5 h-64 md:h-72">
+          <div class="h-6 w-40 rounded-md bg-[#26262b] mb-4"></div>
+          <div class="grid grid-cols-4 gap-2 mb-4">
+            <div class="h-16 rounded-lg bg-[#26262b]"></div>
+            <div class="h-16 rounded-lg bg-[#26262b]"></div>
+            <div class="h-16 rounded-lg bg-[#26262b]"></div>
+            <div class="h-16 rounded-lg bg-[#26262b]"></div>
+          </div>
+          <div class="h-24 rounded-lg bg-[#26262b] flex items-end p-3">
+            <svg width="100%" height="50" viewBox="0 0 300 50" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+              <path d="M0 40 L40 25 L80 35 L120 15 L160 28 L200 10 L240 22 L300 5" stroke="#6C63FF" stroke-width="2" fill="none"/>
+            </svg>
+          </div>
+        </div>
+      </article>
+
+      <!-- Project 2 -->
+      <article class="fade-up card-hover rounded-3xl border border-[var(--line)] bg-[var(--card)] p-8 md:p-10 grid md:grid-cols-[1fr_1.1fr] gap-10 items-center">
+        <div class="md:order-2">
+          <h3 class="display text-2xl md:text-3xl font-semibold mb-4">Mobile Banking App </h3>
+          <p class="text-[var(--muted2)] leading-relaxed mb-6">
+            A concept exploring simpler money transfers and balance
+            visibility for a retail banking app, with a small reusable
+            component set.
+          </p>
+          <div class="flex items-center gap-6 mb-6">
+            <div>
+              <p class="kpi text-xl font-semibold" style="color:var(--violet-soft)">Concept</p>
+              <p class="text-xs text-[var(--muted2)]">Project type</p>
+            </div>
+            <div class="w-px h-8 bg-[var(--line)]"></div>
+            <div>
+              <p class="kpi text-xl font-semibold" style="color:var(--violet-soft)">3 weeks</p>
+              <p class="text-xs text-[var(--muted2)]">Duration</p>
+            </div>
+          </div>
+          <div class="flex flex-wrap gap-2 mb-8">
+            <span class="text-xs font-semibold px-3.5 py-1.5 rounded-full bg-[#232327] text-[var(--muted)]">UI Design</span>
+            <span class="text-xs font-semibold px-3.5 py-1.5 rounded-full bg-[#232327] text-[var(--muted)]">UX Research</span>
+            <span class="text-xs font-semibold px-3.5 py-1.5 rounded-full bg-[#232327] text-[var(--muted)]">Design System</span>
+          </div>
+          <a href="mobile-banking app.html" class="text-sm font-semibold" style="color:var(--violet-soft)" data-project="Mobile Banking App">View project →</a>
+        </div>
+        <div class="md:order-1 rounded-2xl bg-[#1c1c20] border border-[var(--line)] p-5 flex justify-center">
+          <div class="w-40 h-64 rounded-[24px] bg-[#141417] border border-[var(--line)] p-3">
+            <div class="h-2 w-16 mx-auto rounded-full bg-[#26262b] mb-3"></div>
+            <p class="text-[10px] text-[var(--muted2)]">Good morning</p>
+            <p class="text-sm font-semibold mb-3">Ashutosh</p>
+            <div class="h-16 rounded-xl mb-2" style="background:linear-gradient(180deg, rgba(124,92,255,0.25), rgba(0,0,255,0.15))">
+              <p class="text-[9px] text-white/70 pt-2 px-2">Total balance</p>
+              <p class="text-sm font-bold px-2">£12,450.50</p>
+            </div>
+            <div class="grid grid-cols-3 gap-1.5">
+              <div class="h-6 rounded bg-[#26262b]"></div>
+              <div class="h-6 rounded bg-[#26262b]"></div>
+              <div class="h-6 rounded bg-[#26262b]"></div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Project 3 -->
+      <article class="fade-up card-hover rounded-3xl border border-[var(--line)] bg-[var(--card)] p-8 md:p-10 grid md:grid-cols-[1fr_1.1fr] gap-10 items-center">
+        <div>
+          <h3 class="display text-2xl md:text-3xl font-semibold mb-4">Analytics Admin Panel </h3>
+          <p class="text-[var(--muted2)] leading-relaxed mb-6">
+            A concept admin panel exploring how an ops team might monitor
+            performance and spot anomalies without needing to ask
+            engineering for a custom report.
+          </p>
+          <div class="flex items-center gap-6 mb-6">
+            <div>
+              <p class="kpi text-xl font-semibold" style="color:var(--violet-soft)">Concept</p>
+              <p class="text-xs text-[var(--muted2)]">Project type</p>
+            </div>
+            <div class="w-px h-8 bg-[var(--line)]"></div>
+            <div>
+              <p class="kpi text-xl font-semibold" style="color:var(--violet-soft)">10+</p>
+              <p class="text-xs text-[var(--muted2)]">Screens designed</p>
+            </div>
+          </div>
+          <div class="flex flex-wrap gap-2 mb-8">
+            <span class="text-xs font-semibold px-3.5 py-1.5 rounded-full bg-[#232327] text-[var(--muted)]">Dashboard Design</span>
+            <span class="text-xs font-semibold px-3.5 py-1.5 rounded-full bg-[#232327] text-[var(--muted)]">Data Visualization</span>
+            <span class="text-xs font-semibold px-3.5 py-1.5 rounded-full bg-[#232327] text-[var(--muted)]">Admin Panel</span>
+          </div>
+          <a href="Dashboard-Analytics.html" class="text-sm font-semibold" style="color:var(--violet-soft)" data-project="Analytics Admin Panel">View project →</a>
+        </div>
+        <div class="rounded-2xl bg-[#1c1c20] border border-[var(--line)] p-5 h-64 md:h-72">
+          <div class="flex gap-2 mb-3">
+            <div class="w-6 h-6 rounded bg-[#7c6cf5]"></div>
+            <div class="h-6 flex-1 rounded-md bg-[#26262b]"></div>
+          </div>
+          <div class="grid grid-cols-3 gap-2 mb-3">
+            <div class="h-14 rounded-lg bg-[#26262b]"></div>
+            <div class="h-14 rounded-lg bg-[#26262b]"></div>
+            <div class="h-14 rounded-lg bg-[#26262b]"></div>
+          </div>
+          <div class="h-24 rounded-lg bg-[#141417]"></div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section id="process" class="px-6 md:px-10 py-28 border-t border-[var(--line)] bg-[var(--bg-soft)]">
+  <div class="max-w-6xl mx-auto">
+    <div class="fade-up mb-14 max-w-xl">
+      <p class="num uppercase mb-4">How I work</p>
+      <h2 class="display text-3xl md:text-4xl font-semibold mb-4">The process I follow on every project</h2>
+      <p class="text-[var(--muted2)] leading-relaxed">Even on a small personal project, I try to run through these four stages rather than jumping straight to screens.</p>
+    </div>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+      <div class="fade-up rounded-2xl border border-[var(--line)] bg-[var(--card)] p-6">
+        <p class="mono text-xs mb-4" style="color:var(--gold)">01</p>
+        <h3 class="font-semibold mb-2">Discover</h3>
+        <p class="text-sm text-[var(--muted2)] leading-relaxed">Read the brief closely, look at similar products, and note down the real problem before assuming a solution.</p>
+      </div>
+      <div class="fade-up rounded-2xl border border-[var(--line)] bg-[var(--card)] p-6">
+        <p class="mono text-xs mb-4" style="color:var(--gold)">02</p>
+        <h3 class="font-semibold mb-2">Define</h3>
+        <p class="text-sm text-[var(--muted2)] leading-relaxed">Write down what "done" looks like for the project before drawing a single screen.</p>
+      </div>
+      <div class="fade-up rounded-2xl border border-[var(--line)] bg-[var(--card)] p-6">
+        <p class="mono text-xs mb-4" style="color:var(--gold)">03</p>
+        <h3 class="font-semibold mb-2">Design</h3>
+        <p class="text-sm text-[var(--muted2)] leading-relaxed">Wireframes first, then a high-fidelity prototype, tested on a few classmates or friends along the way.</p>
+      </div>
+      <div class="fade-up rounded-2xl border border-[var(--line)] bg-[var(--card)] p-6">
+        <p class="mono text-xs mb-4" style="color:var(--gold)">04</p>
+        <h3 class="font-semibold mb-2">Deliver</h3>
+        <p class="text-sm text-[var(--muted2)] leading-relaxed">Clean handoff notes, an interactive prototype, and revisions based on feedback.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills" class="px-6 md:px-10 py-28 border-t border-[var(--line)]">
+  <div class="max-w-6xl mx-auto">
+    <div class="fade-up mb-14 max-w-xl">
+      <p class="num uppercase mb-4">Skills</p>
+      <h2 class="display text-3xl md:text-4xl font-semibold mb-4">Skills I'm building</h2>
+      <p class="text-[var(--muted2)] leading-relaxed">
+        Honest levels, not inflated ones — I'd rather show where I am
+        and grow from there.
+      </p>
+    </div>
+    <div id="skillGrid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      <!-- filled by JS for clean markup; degrades gracefully with noscript fallback below -->
+    </div>
+    <noscript>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div class="rounded-2xl border border-[var(--line)] bg-[var(--card)] p-6"><p class="font-semibold">Figma — Confident</p></div>
+        <div class="rounded-2xl border border-[var(--line)] bg-[var(--card)] p-6"><p class="font-semibold">UI Design — Comfortable</p></div>
+        <div class="rounded-2xl border border-[var(--line)] bg-[var(--card)] p-6"><p class="font-semibold">Wireframing — Comfortable</p></div>
+        <div class="rounded-2xl border border-[var(--line)] bg-[var(--card)] p-6"><p class="font-semibold">UX Research — Familiar</p></div>
+        <div class="rounded-2xl border border-[var(--line)] bg-[var(--card)] p-6"><p class="font-semibold">Prototyping — Comfortable</p></div>
+        <div class="rounded-2xl border border-[var(--line)] bg-[var(--card)] p-6"><p class="font-semibold">HTML/CSS — Familiar</p></div>
+      </div>
+    </noscript>
+  </div>
+</section>
+
+<!-- REFERENCES (sample — replace with real quotes once you have them) -->
+<section id="testimonials" class="px-6 md:px-10 py-28 border-t border-[var(--line)] bg-[var(--bg-soft)]">
+  <div class="max-w-6xl mx-auto">
+    <div class="fade-up mb-14 max-w-xl">
+      <p class="num uppercase mb-4">References</p>
+      <h2 class="display text-3xl md:text-4xl font-semibold">What mentors &amp; professors say</h2>
+      <p class="text-[var(--muted2)] mt-4 leading-relaxed">Placeholder quotes — swap these for real feedback from a professor, mentor, or hackathon judge before publishing. If you don't have any yet, it's fine to delete this whole section.</p>
+    </div>
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="fade-up rounded-2xl border border-[var(--line)] bg-[var(--card)] p-8">
+        <p class="text-[var(--muted2)] leading-relaxed mb-6">"Design isn't something you're born knowing — it's something you build, one problem at a time. DICS Institute gave me that foundation. I'm ready to build the rest on the job."</p>
+        <p class="text-sm font-semibold">sandeep sir, "Where i'm  starting from"</p>
+        <p class="text-xs text-[var(--muted2)]">Ashutosh, UI/UX Design Fresher, DICS Institute</p>
+      </div>
+      <div class="fade-up rounded-2xl border border-[var(--line)] bg-[var(--card)] p-8">
+        <p class="text-[var(--muted2)] leading-relaxed mb-6">"I don't have years of experience yet — I have curiosity, careful research, and the discipline to keep iterating until something works. That's enough to start."</p>
+        <p class="text-sm font-semibold">sandeep sir, "Words that Shape my Work"</p>
+        <p class="text-xs text-[var(--muted2)]">Ashutosh, UI/UX Design Fresher, DICS Institute</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="px-6 md:px-10 py-28 border-t border-[var(--line)]">
+  <div class="max-w-3xl mx-auto text-center fade-up">
+    <p class="num uppercase mb-4">Get in touch</p>
+    <h2 class="display text-3xl md:text-5xl font-semibold mb-6">I'd love to intern with your team.</h2>
+    <p class="text-[var(--muted2)] mb-10 max-w-lg mx-auto">
+      Currently looking for a UI/UX design internship — remote or on-site,
+      [add your availability, e.g. "starting June 2026"]. Reach out if
+      you have an opening or just want to talk about design.
+    </p>
+    <div class="flex flex-wrap gap-4 justify-center items-center">
+      <a href="mailto:ashusinghaniya69@gmail.com?subject=Let%27s%20talk%20about%20an%20internship&body=Hi%20Ashutosh%2C%0A%0A" class="btn-primary font-semibold px-8 py-3.5 rounded-full text-sm">Email me</a>
+      
+      <a href="ashutosh_resume.pdf" id="downloadResumeLink" class="btn-outline font-semibold px-8 py-3.5 rounded-full text-sm" title="View your resume" target="_blank">Download resume</a>
+    </div>
+    
+</section>
+
+<footer class="px-6 md:px-10 py-8 border-t border-[var(--line)]">
+  <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-[var(--muted2)]">
+    <p>© <span id="copyrightYear">2026</span> Ashutosh — designed &amp; built with intent.</p>
+    <a href="#top" class="hover:text-[var(--gold)] transition-colors">Back to top ↑</a>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('copyrightYear').textContent = new Date().getFullYear();
+
+  // Honest skill levels instead of inflated mastery percentages.
+  // width maps a qualitative level to a bar length for visual comparison only.
+  const levelWidth = { "Familiar": 40, "Comfortable": 65, "Confident": 85 };
+  const skills = [
+    { name: "Figma", level: "Confident" },
+    { name: "UI Design", level: "Comfortable" },
+    { name: "Wireframing", level: "Comfortable" },
+    { name: "UX Research", level: "Familiar" },
+    { name: "Prototyping", level: "Comfortable" },
+    { name: "HTML/CSS", level: "Familiar" },
+  ];
+  const grid = document.getElementById('skillGrid');
+  skills.forEach(s => {
+    const el = document.createElement('div');
+    el.className = "rounded-2xl border border-[var(--line)] bg-[var(--card)] p-6 fade-up";
+    el.innerHTML = `
+      <div class="flex items-center justify-between mb-4">
+        <p class="font-semibold">${s.name}</p>
+        <p class="kpi text-sm font-semibold" style="color:var(--gold)">${s.level}</p>
+      </div>
+      <div class="h-1.5 rounded-full bg-[#232327] overflow-hidden">
+        <div class="skill-fill h-full rounded-full" style="width:0%; background:var(--gold);" data-value="${levelWidth[s.level]}"></div>
+      </div>`;
+    grid.appendChild(el);
+  });
+
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('show');
+        const fill = entry.target.querySelector('.skill-fill');
+        if (fill) fill.style.width = fill.dataset.value + '%';
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+  if (prefersReducedMotion) {
+    document.querySelectorAll('.fade-up').forEach(el => el.classList.add('show'));
+    document.querySelectorAll('.skill-fill').forEach(fill => { fill.style.width = fill.dataset.value + '%'; });
+  }
+
+  // Mobile nav toggle
+  const navToggle = document.getElementById('navToggle');
+  const mobileNav = document.getElementById('mobileNav');
+  const iconOpen = document.getElementById('navIconOpen');
+  const iconClose = document.getElementById('navIconClose');
+  if (navToggle && mobileNav && iconOpen && iconClose) {
+    navToggle.addEventListener('click', () => {
+      const isOpen = mobileNav.classList.toggle('open');
+      navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      iconOpen.classList.toggle('hidden', isOpen);
+      iconClose.classList.toggle('hidden', !isOpen);
+    });
+    mobileNav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+      mobileNav.classList.remove('open');
+      navToggle.setAttribute('aria-expanded', 'false');
+      iconOpen.classList.remove('hidden');
+      iconClose.classList.add('hidden');
+    }));
+  }
+
+  // Copy email to clipboard
+  const copyBtn = document.getElementById('copyEmailBtn');
+  const copyConfirm = document.getElementById('copyConfirm');
+  const defaultCopyLabel = copyBtn ? copyBtn.textContent : '';
+  if (copyBtn) {
+    copyBtn.addEventListener('click', async () => {
+      const email = 'ashusinghaniya69@gmail.com';
+      try {
+        await navigator.clipboard.writeText(email);
+      } catch (err) {
+        const temp = document.createElement('textarea');
+        temp.value = email;
+        temp.style.position = 'fixed';
+        temp.style.opacity = '0';
+        document.body.appendChild(temp);
+        temp.select();
+        document.execCommand('copy');
+        document.body.removeChild(temp);
+      }
+      copyConfirm.style.opacity = '1';
+      copyBtn.textContent = 'Copied!';
+      setTimeout(() => {
+        copyConfirm.style.opacity = '0';
+        copyBtn.textContent = defaultCopyLabel;
+      }, 2200);
+    });
+  }
+
+  // Placeholder handlers so links explain themselves instead of silently 404-ing
+  document.querySelectorAll('.js-case-study-link').forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      alert(`Add a real project page or Figma/Behance link for "${link.dataset.project}" and update this link's href.`);
+    });
+  });
+
+
+</script>
+
+</body>
+</html>
