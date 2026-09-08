@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Nimbus — Banking, simplified.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0A0A0F;
+    --bg-soft:#0F0F16;
+    --card:#14141C;
+    --card2:#181822;
+    --line:#25252F;
+    --text:#F1F0F5;
+    --muted:#96959f;
+    --muted2:#67666f;
+    --violet:#6C63FF;
+    --violet-soft:#9C93FF;
+    --mint:#3DD9A4;
+    --coral:#FF7A6E;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg); color:var(--text);
+    font-family:'Inter', sans-serif;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  .display{font-family:'Plus Jakarta Sans', sans-serif;}
+  .mono{font-family:'Roboto Mono', monospace; font-variant-numeric:tabular-nums;}
+  .wrap{max-width:1160px; margin:0 auto; padding:0 28px;}
+
+  .glow{
+    position:absolute; border-radius:50%; filter:blur(90px); pointer-events:none; z-index:0;
+  }
+
+  /* NAV */
+  header{position:fixed; top:0; left:0; right:0; z-index:100; backdrop-filter:blur(12px); background:rgba(10,10,15,0.72); border-bottom:1px solid var(--line);}
+  .navbar{display:flex; align-items:center; justify-content:space-between; height:68px;}
+  .logo{display:flex; align-items:center; gap:9px; font-family:'Plus Jakarta Sans'; font-weight:800; font-size:18px;}
+  .logo-mark{width:28px; height:28px; border-radius:8px; background:linear-gradient(155deg, var(--violet), #4038c9); display:flex; align-items:center; justify-content:center;}
+  .logo-mark svg{width:15px; height:15px;}
+  nav.links{display:flex; gap:34px; font-size:14px; color:var(--muted); font-weight:500;}
+  nav.links a{color:inherit; text-decoration:none; transition:color .2s;}
+  nav.links a:hover{color:var(--text);}
+  .nav-cta{background:var(--violet); color:#fff; font-weight:600; font-size:13.5px; padding:10px 20px; border-radius:100px; text-decoration:none; transition:background .2s, transform .2s;}
+  .nav-cta:hover{background:#7d75ff; transform:translateY(-1px);}
+  .menu-btn{display:none;}
+
+  /* HERO */
+  .hero{position:relative; padding:150px 0 90px; overflow:hidden;}
+  .hero-grid{display:grid; grid-template-columns:1fr 0.95fr; gap:40px; align-items:center; position:relative; z-index:2;}
+  .eyebrow{display:inline-flex; align-items:center; gap:8px; font-size:12.5px; font-weight:600; color:var(--violet-soft); background:rgba(108,99,255,0.1); border:1px solid rgba(108,99,255,0.25); padding:7px 14px; border-radius:100px; margin-bottom:22px;}
+  .eyebrow span.dot{width:6px; height:6px; border-radius:50%; background:var(--mint);}
+  h1.hero-title{font-family:'Plus Jakarta Sans'; font-weight:800; font-size:52px; line-height:1.06; letter-spacing:-0.02em; margin-bottom:22px;}
+  h1.hero-title .accent{background:linear-gradient(100deg, var(--violet-soft), var(--violet)); -webkit-background-clip:text; background-clip:text; color:transparent;}
+  .hero-sub{font-size:16.5px; color:var(--muted); max-width:440px; line-height:1.65; margin-bottom:32px;}
+  .hero-actions{display:flex; align-items:center; gap:18px; flex-wrap:wrap;}
+  .store-btn{display:flex; align-items:center; gap:10px; background:var(--card); border:1px solid var(--line); padding:11px 18px; border-radius:12px; text-decoration:none; color:var(--text); transition:border-color .2s, transform .2s;}
+  .store-btn:hover{border-color:var(--violet); transform:translateY(-2px);}
+  .store-btn svg{width:20px; height:20px;}
+  .store-btn .store-text{line-height:1.2;}
+  .store-btn .store-text small{display:block; font-size:9.5px; color:var(--muted2); text-transform:uppercase; letter-spacing:0.06em;}
+  .store-btn .store-text strong{font-size:13.5px; font-weight:600;}
+  .trust-row{display:flex; align-items:center; gap:10px; margin-top:34px; font-size:12.5px; color:var(--muted2);}
+  .trust-avatars{display:flex;}
+  .trust-avatars span{width:26px; height:26px; border-radius:50%; border:2px solid var(--bg); background:linear-gradient(140deg,#3a3a48,#232330); margin-left:-8px;}
+  .trust-avatars span:first-child{margin-left:0;}
+
+  /* Phone mockup */
+  .phone-stage{position:relative; display:flex; justify-content:center; z-index:2;}
+  .phone{
+    width:290px; height:588px; border-radius:42px; background:#000;
+    border:8px solid #17171f; box-shadow:0 40px 90px -30px rgba(0,0,0,0.8), 0 0 0 1px rgba(255,255,255,0.03);
+    position:relative; overflow:hidden;
+  }
+  .phone-notch{position:absolute; top:0; left:50%; transform:translateX(-50%); width:120px; height:22px; background:#000; border-radius:0 0 16px 16px; z-index:5;}
+  .phone-screen{
+    position:absolute; inset:0; background:linear-gradient(175deg, #14141C 0%, #0A0A0F 55%);
+    padding:38px 20px 20px; display:flex; flex-direction:column; gap:16px;
+  }
+  .ph-greet{font-size:11px; color:var(--muted2);}
+  .ph-balance-label{font-size:11.5px; color:var(--muted); margin-top:2px;}
+  .ph-balance{font-family:'Plus Jakarta Sans'; font-weight:700; font-size:30px; letter-spacing:-0.01em; margin-top:2px;}
+  .ph-balance .cents{font-size:17px; color:var(--muted);}
+  .ph-chip{display:inline-flex; align-items:center; gap:4px; font-size:11px; color:var(--mint); background:rgba(61,217,164,0.12); padding:4px 9px; border-radius:100px; margin-top:8px; width:fit-content;}
+
+  .ph-sparkline{height:44px; margin-top:6px;}
+
+  .ph-actions{display:grid; grid-template-columns:repeat(4,1fr); gap:8px; margin-top:6px;}
+  .ph-action{display:flex; flex-direction:column; align-items:center; gap:6px;}
+  .ph-action .ic{width:42px; height:42px; border-radius:13px; background:var(--card2); border:1px solid var(--line); display:flex; align-items:center; justify-content:center;}
+  .ph-action .ic svg{width:17px; height:17px; color:var(--violet-soft);}
+  .ph-action span{font-size:9.5px; color:var(--muted);}
+
+  .ph-section-label{font-size:11px; color:var(--muted2); margin-top:8px; display:flex; justify-content:space-between;}
+  .ph-txn{display:flex; align-items:center; gap:10px; background:var(--card2); border:1px solid var(--line); border-radius:14px; padding:10px 12px;}
+  .ph-txn .ic{width:32px; height:32px; border-radius:10px; background:var(--bg-soft); display:flex; align-items:center; justify-content:center; font-size:13px; flex-shrink:0;}
+  .ph-txn .info{flex:1; min-width:0;}
+  .ph-txn .info .n{font-size:12px; font-weight:600;}
+  .ph-txn .info .c{font-size:10px; color:var(--muted2);}
+  .ph-txn .amt{font-size:12px; font-weight:600; font-family:'Roboto Mono';}
+  .ph-txn .amt.pos{color:var(--mint);}
+
+  /* Floating cards around phone */
+  .float-card{
+    position:absolute; background:var(--card); border:1px solid var(--line); border-radius:16px;
+    padding:12px 14px; box-shadow:0 20px 50px -20px rgba(0,0,0,0.7); display:flex; align-items:center; gap:10px;
+    animation:floatY 5s ease-in-out infinite;
+    z-index:3;
+  }
+  .float-card .ic{width:34px; height:34px; border-radius:10px; display:flex; align-items:center; justify-content:center; flex-shrink:0;}
+  .float-card .label{font-size:10px; color:var(--muted2);}
+  .float-card .val{font-size:13px; font-weight:700; font-family:'Roboto Mono';}
+  .card-sent{top:8%; left:-8%; animation-delay:0s;}
+  .card-sent .ic{background:rgba(61,217,164,0.14); color:var(--mint);}
+  .card-secure{bottom:14%; right:-9%; animation-delay:1.4s;}
+  .card-secure .ic{background:rgba(108,99,255,0.14); color:var(--violet-soft);}
+  @keyframes floatY{
+    0%,100%{transform:translateY(0);}
+    50%{transform:translateY(-12px);}
+  }
+
+  /* Logo strip */
+  .logo-strip{border-top:1px solid var(--line); border-bottom:1px solid var(--line); padding:26px 0; margin-top:80px;}
+  .logo-strip .wrap{display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:20px;}
+  .logo-strip p{font-size:11.5px; color:var(--muted2); text-transform:uppercase; letter-spacing:0.1em;}
+  .logo-strip .marks{display:flex; gap:38px; align-items:center; color:var(--muted2); font-weight:600; font-size:14px; font-family:'Plus Jakarta Sans';}
+
+  /* FEATURES */
+  .section{padding:110px 0;}
+  .section-head{max-width:560px; margin-bottom:56px;}
+  .kicker{font-size:12.5px; font-weight:700; color:var(--violet-soft); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:14px;}
+  .section-title{font-family:'Plus Jakarta Sans'; font-size:34px; font-weight:700; letter-spacing:-0.01em; line-height:1.2; margin-bottom:14px;}
+  .section-desc{color:var(--muted); font-size:15.5px; line-height:1.65;}
+
+  .feature-grid{display:grid; grid-template-columns:repeat(3, 1fr); gap:20px;}
+  .feature-card{background:var(--card); border:1px solid var(--line); border-radius:20px; padding:28px; transition:border-color .25s, transform .25s;}
+  .feature-card:hover{border-color:rgba(108,99,255,0.4); transform:translateY(-4px);}
+  .feature-card .ic{width:44px; height:44px; border-radius:12px; background:rgba(108,99,255,0.1); display:flex; align-items:center; justify-content:center; margin-bottom:18px;}
+  .feature-card .ic svg{width:20px; height:20px; color:var(--violet-soft);}
+  .feature-card h3{font-family:'Plus Jakarta Sans'; font-size:17px; font-weight:700; margin-bottom:9px;}
+  .feature-card p{font-size:13.5px; color:var(--muted); line-height:1.6;}
+
+  /* SECURITY */
+  .security-section{background:var(--bg-soft); border-top:1px solid var(--line); border-bottom:1px solid var(--line); position:relative; overflow:hidden;}
+  .security-grid{display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:center;}
+  .shield-visual{position:relative; display:flex; align-items:center; justify-content:center; height:340px;}
+  .shield-ring{position:absolute; border-radius:50%; border:1px solid var(--line);}
+  .ring1{width:340px; height:340px;}
+  .ring2{width:250px; height:250px;}
+  .ring3{width:170px; height:170px;}
+  .shield-core{
+    width:104px; height:104px; border-radius:28px; background:linear-gradient(155deg, var(--violet), #3a32c4);
+    display:flex; align-items:center; justify-content:center; box-shadow:0 0 60px rgba(108,99,255,0.4); z-index:2;
+  }
+  .shield-core svg{width:44px; height:44px; color:#fff;}
+  .orbit-badge{
+    position:absolute; background:var(--card); border:1px solid var(--line); border-radius:12px; padding:8px 12px;
+    display:flex; align-items:center; gap:7px; font-size:11.5px; font-weight:600; box-shadow:0 12px 30px -12px rgba(0,0,0,0.6);
+  }
+  .orbit-badge svg{width:13px; height:13px; color:var(--mint);}
+  .b1{top:4%; left:6%;}
+  .b2{top:12%; right:0%;}
+  .b3{bottom:8%; left:0%;}
+  .b4{bottom:2%; right:10%;}
+
+  .security-list{display:flex; flex-direction:column; gap:22px;}
+  .security-item{display:flex; gap:16px;}
+  .security-item .num{font-family:'Roboto Mono'; font-size:12px; color:var(--violet-soft); padding-top:3px; flex-shrink:0; width:24px;}
+  .security-item h4{font-family:'Plus Jakarta Sans'; font-size:15.5px; font-weight:700; margin-bottom:5px;}
+  .security-item p{font-size:13.5px; color:var(--muted); line-height:1.6;}
+
+  /* STATS */
+  .stats-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:16px; text-align:center;}
+  .stat{padding:8px;}
+  .stat .val{font-family:'Plus Jakarta Sans'; font-size:38px; font-weight:800; color:var(--text); letter-spacing:-0.02em;}
+  .stat .val .accent{color:var(--violet-soft);}
+  .stat .lbl{font-size:12.5px; color:var(--muted2); margin-top:6px;}
+
+  /* CTA */
+  .cta-section{position:relative; padding:100px 0; text-align:center; overflow:hidden;}
+  .cta-box{
+    max-width:680px; margin:0 auto; background:linear-gradient(160deg, #171724, #100f18);
+    border:1px solid var(--line); border-radius:28px; padding:64px 40px; position:relative; z-index:2;
+  }
+  .cta-box h2{font-family:'Plus Jakarta Sans'; font-size:32px; font-weight:800; margin-bottom:14px; letter-spacing:-0.01em;}
+  .cta-box p{color:var(--muted); font-size:15px; margin-bottom:32px;}
+  .cta-stores{display:flex; gap:16px; justify-content:center; flex-wrap:wrap;}
+
+  footer{border-top:1px solid var(--line); padding:36px 0;}
+  footer .wrap{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px;}
+  footer p{font-size:12.5px; color:var(--muted2);}
+  footer .flinks{display:flex; gap:24px; font-size:12.5px; color:var(--muted2);}
+  footer .flinks a{color:inherit; text-decoration:none;}
+  footer .flinks a:hover{color:var(--text);}
+
+  .fade-up{opacity:0; transform:translateY(20px); transition:opacity .6s ease, transform .6s ease;}
+  .fade-up.show{opacity:1; transform:translateY(0);}
+
+  @media (max-width: 900px){
+    .hero-grid{grid-template-columns:1fr; text-align:center;}
+    .hero-sub{margin-left:auto; margin-right:auto;}
+    .hero-actions{justify-content:center;}
+    .trust-row{justify-content:center;}
+    .feature-grid{grid-template-columns:1fr;}
+    .security-grid{grid-template-columns:1fr;}
+    .stats-grid{grid-template-columns:1fr 1fr;}
+    nav.links{display:none;}
+    .float-card{display:none;}
+  }
+  @media (max-width: 560px){
+    h1.hero-title{font-size:36px;}
+    .section-title{font-size:26px;}
+    .phone{width:250px; height:508px;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap navbar">
+    <div class="logo">
+      <div class="logo-mark"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.3"><path d="M12 2l8 4v6c0 5-3.4 8.6-8 10-4.6-1.4-8-5-8-10V6z"/></svg></div>
+      Nimbus
+    </div>
+    <nav class="links">
+      <a href="#features">Features</a>
+      <a href="#security">Security</a>
+      <a href="#stats">Why Nimbus</a>
+    </nav>
+    <a href="#get-app" class="nav-cta">Get the app</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="glow" style="width:520px; height:520px; background:var(--violet); opacity:0.16; top:-180px; left:-140px;"></div>
+  <div class="glow" style="width:420px; height:420px; background:var(--mint); opacity:0.08; bottom:-160px; right:-100px;"></div>
+  <div class="wrap hero-grid">
+    <div class="fade-up">
+      <div class="eyebrow"><span class="dot"></span>Bank-grade security, everyday simplicity</div>
+      <h1 class="hero-title">Money management<br/>that finally feels<br/><span class="accent">effortless.</span></h1>
+      <p class="hero-sub">Nimbus brings your spending, saving, and transfers into one clean screen — with biometric-secured transactions that clear in seconds, not days.</p>
+      <div class="hero-actions">
+        <a href="#get-app" class="store-btn">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.14 7.31c1.35.07 2.29.74 3.08.8.79-.06 1.62-.75 3.13-.62 1.28.11 2.28.6 2.92 1.62-2.68 1.62-2.28 5.2.36 6.36-.56 1.5-1.29 2.99-1.58 3.81zM12.03 6.98c-.15-1.96 1.44-3.7 3.31-3.98.29 2.08-1.87 4.14-3.31 3.98z"/></svg>
+          <span class="store-text"><small>Download on the</small><strong>App Store</strong></span>
+        </a>
+        <a href="#get-app" class="store-btn">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3.6 2.4c-.4.2-.6.6-.6 1.1v17c0 .5.2.9.6 1.1l9.6-9.6-9.6-9.6zm11 9.6l2.5-2.5-11.8-6.7 9.3 9.2zm0 0l-9.3 9.2 11.8-6.7-2.5-2.5zm1.4-1.4l2.8-1.6c.5-.3.5-1 0-1.3l-2.8-1.6-2.6 2.5 2.6 2z"/></svg>
+          <span class="store-text"><small>Get it on</small><strong>Google Play</strong></span>
+        </a>
+      </div>
+      <div class="trust-row">
+        <div class="trust-avatars"><span></span><span></span><span></span><span></span></div>
+        Trusted by 240,000+ people managing their money daily
+      </div>
+    </div>
+
+    <div class="phone-stage fade-up">
+      <div class="float-card card-sent">
+        <div class="ic"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
+        <div><div class="label">Transfer sent</div><div class="val">$1,240.00</div></div>
+      </div>
+      <div class="float-card card-secure">
+        <div class="ic"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg></div>
+        <div><div class="label">Verified</div><div class="val">Face ID</div></div>
+      </div>
+
+      <div class="phone">
+        <div class="phone-notch"></div>
+        <div class="phone-screen">
+          <div>
+            <div class="ph-greet">Good evening, Priya</div>
+            <div class="ph-balance-label">Total balance</div>
+            <div class="ph-balance">$24,180<span class="cents">.52</span></div>
+            <div class="ph-chip">↑ 8.2% this month</div>
+          </div>
+          <div class="ph-sparkline"><svg width="100%" height="44" viewBox="0 0 250 44" preserveAspectRatio="none">
+            <path d="M0 34 L25 30 L50 36 L75 20 L100 26 L125 12 L150 22 L175 8 L200 16 L225 4 L250 10" stroke="#9C93FF" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg></div>
+          <div class="ph-actions">
+            <div class="ph-action"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div><span>Send</span></div>
+            <div class="ph-action"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg></div><span>Request</span></div>
+            <div class="ph-action"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="6" width="20" height="13" rx="2"/><path d="M2 10h20"/></svg></div><span>Card</span></div>
+            <div class="ph-action"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18M7 15l4-5 3 3 5-7"/></svg></div><span>Invest</span></div>
+          </div>
+          <div class="ph-section-label"><span>Recent activity</span><span>See all</span></div>
+          <div class="ph-txn"><div class="ic">☕</div><div class="info"><div class="n">Blue Bottle Coffee</div><div class="c">Food &amp; Drink</div></div><div class="amt">-$6.40</div></div>
+          <div class="ph-txn"><div class="ic">💼</div><div class="info"><div class="n">Freelance Payout</div><div class="c">Income</div></div><div class="amt pos">+$850.00</div></div>
+          <div class="ph-txn"><div class="ic">🏠</div><div class="info"><div class="n">Rent — August</div><div class="c">Housing</div></div><div class="amt">-$1,450.00</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="logo-strip">
+  <div class="wrap">
+    <p>Backed by the same standards trusted by</p>
+    <div class="marks"><span>VisaNet</span><span>PlaidLink</span><span>SWIFT gpi</span><span>NACHA</span></div>
+  </div>
+</div>
+
+<section class="section" id="features">
+  <div class="wrap">
+    <div class="section-head fade-up">
+      <div class="kicker">Everyday banking</div>
+      <h2 class="section-title">Everything about your money, in one clear place.</h2>
+      <p class="section-desc">No buried menus, no confusing statements. Nimbus turns your accounts into a single, honest view of where your money is and where it's going.</p>
+    </div>
+    <div class="feature-grid">
+      <div class="feature-card fade-up">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></div>
+        <h3>Instant transfers</h3>
+        <p>Send and receive money in seconds — between your own accounts or to anyone else on Nimbus, with zero transfer fees.</p>
+      </div>
+      <div class="feature-card fade-up">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 10h18M8 4v2M16 4v2"/></svg></div>
+        <h3>Smart budgeting</h3>
+        <p>Every transaction is auto-sorted into categories, so you always know exactly how much is left to spend this month.</p>
+      </div>
+      <div class="feature-card fade-up">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="6" width="20" height="14" rx="2.5"/><path d="M2 11h20"/></svg></div>
+        <h3>Virtual cards</h3>
+        <p>Spin up a disposable card number for online purchases in one tap, and freeze it instantly if something feels off.</p>
+      </div>
+      <div class="feature-card fade-up">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M2 12h20"/><circle cx="12" cy="12" r="9"/></svg></div>
+        <h3>Round-up savings</h3>
+        <p>Every purchase rounds up to the nearest dollar, and the spare change moves straight into your savings goal.</p>
+      </div>
+      <div class="feature-card fade-up">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
+        <h3>Real-time alerts</h3>
+        <p>A push notification the moment money moves — no more finding out about a charge three days later on a statement.</p>
+      </div>
+      <div class="feature-card fade-up">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35"/></svg></div>
+        <h3>Full transaction history</h3>
+        <p>Search, filter, and export every transaction you've ever made — ready for taxes, budgeting, or just peace of mind.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section security-section" id="security">
+  <div class="wrap security-grid">
+    <div class="fade-up shield-visual">
+      <div class="shield-ring ring1"></div>
+      <div class="shield-ring ring2"></div>
+      <div class="shield-ring ring3"></div>
+      <div class="shield-core"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l8 4v6c0 5-3.4 8.6-8 10-4.6-1.4-8-5-8-10V6z"/><path d="M9 12l2 2 4-4"/></svg></div>
+      <div class="orbit-badge b1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg>256-bit encryption</div>
+      <div class="orbit-badge b2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg>Biometric lock</div>
+      <div class="orbit-badge b3"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg>Fraud monitoring</div>
+      <div class="orbit-badge b4"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg>FDIC insured</div>
+    </div>
+
+    <div class="fade-up">
+      <div class="kicker">Security</div>
+      <h2 class="section-title">Secure enough for your money, simple enough to forget it's there.</h2>
+      <div class="security-list" style="margin-top:28px;">
+        <div class="security-item">
+          <div class="num">01</div>
+          <div><h4>Biometric authentication</h4><p>Face ID and fingerprint unlock every login and every transfer — no passwords to remember or leak.</p></div>
+        </div>
+        <div class="security-item">
+          <div class="num">02</div>
+          <div><h4>Real-time fraud detection</h4><p>Every transaction is scored the instant it happens, and anything unusual is frozen before it clears.</p></div>
+        </div>
+        <div class="security-item">
+          <div class="num">03</div>
+          <div><h4>One-tap card freeze</h4><p>Lost your card or spotted something strange? Freeze it instantly from the app — no phone calls.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="stats">
+  <div class="wrap">
+    <div class="section-head fade-up" style="margin:0 auto 56px; text-align:center;">
+      <div class="kicker" style="margin:0 auto 14px;">Why Nimbus</div>
+      <h2 class="section-title">Built to be the last banking app you download.</h2>
+    </div>
+    <div class="stats-grid fade-up">
+      <div class="stat"><div class="val">240<span class="accent">K+</span></div><div class="lbl">Active users</div></div>
+      <div class="stat"><div class="val">$2.1<span class="accent">B</span></div><div class="lbl">Transferred safely</div></div>
+      <div class="stat"><div class="val">4.9<span class="accent">/5</span></div><div class="lbl">App Store rating</div></div>
+      <div class="stat"><div class="val">&lt;3<span class="accent">s</span></div><div class="lbl">Avg. transfer time</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section" id="get-app">
+  <div class="glow" style="width:400px; height:400px; background:var(--violet); opacity:0.18; top:20%; left:50%; transform:translateX(-50%);"></div>
+  <div class="wrap">
+    <div class="cta-box fade-up">
+      <h2>Your money, finally in one place.</h2>
+      <p>Free to join. No minimum balance. No hidden fees.</p>
+      <div class="cta-stores">
+        <a href="#" class="store-btn">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.14 7.31c1.35.07 2.29.74 3.08.8.79-.06 1.62-.75 3.13-.62 1.28.11 2.28.6 2.92 1.62-2.68 1.62-2.28 5.2.36 6.36-.56 1.5-1.29 2.99-1.58 3.81zM12.03 6.98c-.15-1.96 1.44-3.7 3.31-3.98.29 2.08-1.87 4.14-3.31 3.98z"/></svg>
+          <span class="store-text"><small>Download on the</small><strong>App Store</strong></span>
+        </a>
+        <a href="#" class="store-btn">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3.6 2.4c-.4.2-.6.6-.6 1.1v17c0 .5.2.9.6 1.1l9.6-9.6-9.6-9.6zm11 9.6l2.5-2.5-11.8-6.7 9.3 9.2zm0 0l-9.3 9.2 11.8-6.7-2.5-2.5zm1.4-1.4l2.8-1.6c.5-.3.5-1 0-1.3l-2.8-1.6-2.6 2.5 2.6 2z"/></svg>
+          <span class="store-text"><small>Get it on</small><strong>Google Play</strong></span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p>© 2026 Nimbus Financial. Member FDIC. All deposits insured up to $250,000.</p>
+    <div class="flinks">
+      <a href="#features">Features</a>
+      <a href="#security">Security</a>
+      <a href="#">Privacy</a>
+      <a href="#">Terms</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('show'); observer.unobserve(e.target);} });
+  }, {threshold:0.12});
+  document.querySelectorAll('.fade-up').forEach(el=>observer.observe(el));
+</script>
+
+</body>
+</html>
